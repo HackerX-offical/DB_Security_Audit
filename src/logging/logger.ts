@@ -14,5 +14,7 @@ export function logFailure(message: string, error?: unknown): void {
 
 export function logStep(stepNumber: number, title: string): void {
   console.log(`\n${COLORS.CYAN}${COLORS.BOLD}STEP ${stepNumber}: ${title}${COLORS.RESET}`);
-  console.log(`${COLORS.CYAN}-------------------------------------------------------${COLORS.RESET}`);
+  console.log(
+    `${COLORS.CYAN}-------------------------------------------------------${COLORS.RESET}`,
+  );
 }
