@@ -24,19 +24,9 @@ import {
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { generateAuditEmail } from './audit-utils';
-
-// --- CONFIGURATION ---
-// These are the public keys for the Gyan Niketan Admin App.
-// They are safe to include in client-side code, which is how we obtained them.
-const firebaseConfig = {
-  apiKey: 'AIzaSyAU7vbyM0Z-zO4dTn9am0PxtKchU4dF1vI',
-  authDomain: 'gyan-niketan-admin.firebaseapp.com',
-  projectId: 'gyan-niketan-admin',
-  storageBucket: 'gyan-niketan-admin.firebasestorage.app',
-  messagingSenderId: '499929214062',
-  appId: '1:499929214062:web:3f948275680009f1b08a7f',
-  measurementId: 'G-X5HK6LWSQ9',
-};
+import { firebaseConfig } from './src/config/firebase-config';
+import { COLORS } from './src/logging/colors';
+import { logFailure, logStep, logSuccess } from './src/logging/logger';
 
 // Initialize Firebase SDK
 const app = initializeApp(firebaseConfig);
@@ -44,45 +34,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // --- UTILITIES ---
-
-// ANSI Color Codes for terminal output to make it readable
-const COLORS = {
-  RESET: '\x1b[0m',
-  RED: '\x1b[31m',
-  GREEN: '\x1b[32m',
-  YELLOW: '\x1b[33m',
-  CYAN: '\x1b[36m',
-  BOLD: '\x1b[1m',
-};
-
-/**
- * Logs a success message.
- */
-function logSuccess(message: string) {
-  console.log(`${COLORS.GREEN}[SUCCESS] ${message}${COLORS.RESET}`);
-}
-
-/**
- * Logs a failure/warning message.
- */
-function logFailure(message: string, error?: any) {
-  console.log(`${COLORS.RED}[FAILED]  ${message}${COLORS.RESET}`);
-  if (error) {
-    // Clean up the error message for non-tech users
-    const cleanMsg = error.message || error.code || 'Unknown Error';
-    console.log(`${COLORS.YELLOW}          Reason: ${cleanMsg}${COLORS.RESET}`);
-  }
-}
-
-/**
- * Logs an information header.
- */
-function logStep(stepNumber: number, title: string) {
-  console.log(`\n${COLORS.CYAN}${COLORS.BOLD}STEP ${stepNumber}: ${title}${COLORS.RESET}`);
-  console.log(
-    `${COLORS.CYAN}-------------------------------------------------------${COLORS.RESET}`,
-  );
-}
 
 // --- MAIN ATTACK LOGIC ---
 
