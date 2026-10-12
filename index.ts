@@ -23,6 +23,7 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { generateAuditEmail } from './audit-utils';
 
 // --- CONFIGURATION ---
 // These are the public keys for the Gyan Niketan Admin App.
@@ -97,7 +98,7 @@ async function runSecurityAudit() {
 
   const timestamp = Date.now();
   // We use a timestamp to ensure the email is unique every time we run the test
-  const targetEmail = `admin_audit_${timestamp}@gyanniketan.com`;
+  const targetEmail = generateAuditEmail(timestamp);
   const targetPassword = 'AuditPassword123!';
 
   let currentUser: any;

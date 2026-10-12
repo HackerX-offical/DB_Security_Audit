@@ -141,6 +141,10 @@ match /notices/{noticeId} {
 
 **Disclaimer**: This tool is for educational and authorized testing purposes only.
 
+## Ethics
+
+Use only on systems and content you are **authorized** to access. See [SECURITY.md](./SECURITY.md).
+
 ## License
 
 Licensed under the [HackerX License](./LICENSE). Redistributions must retain copyright,
