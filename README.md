@@ -18,7 +18,7 @@ opportunistic scanning.
 ## Install
 
 ```bash
-git clone https://github.com/HackerX-offical/DB_Security_Audit.git
+git clone https://github.com/HackerX-official/DB_Security_Audit.git
 cd DB_Security_Audit
 npm install
 ```
